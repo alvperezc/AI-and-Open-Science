@@ -1,0 +1,25 @@
+{
+    "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
+    "@type": "SoftwareSourceCode",
+    "license": "https://spdx.org/licenses/Apache-2.0",
+    "codeRepository": "https://github.com/alvperezc/AI-and-Open-Science",
+    "dateCreated": "2023-02-10",
+    "datePublished": "2023-02-10",
+    "dateModified": "2023-02-10",
+    "issueTracker": "https://github.com/alvperezc/AI-and-Open-Science/issues",
+    "name": "My Software",
+    "version": "0.1",
+    "description": "My sowtfare extract text from a PDF",
+    "programmingLanguage": [
+        "Python 3"
+    ],
+    "runtimePlatform": [
+        ".NET"
+    ],
+    "operatingSystem": [
+        "Windows"
+    ],
+    "softwareRequirements": [
+        "Python 3.4"
+    ]
+}
