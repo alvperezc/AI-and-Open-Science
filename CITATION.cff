@@ -1,10 +1,9 @@
-title: "AI and Open Source"
 license: Apache-2.0
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 authors:
   - family-names: Perez
     given-names: Alvaro
-title: "My Research Software"
-version: 0.1
+title: "Data extraction with Grobid"
+version: 1.0
 date-released: 2023-02-10
