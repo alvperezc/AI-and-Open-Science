@@ -1,4 +1,5 @@
 import requests
+import re
 import os
 from bs4 import BeautifulSoup
 from textblob import TextBlob
@@ -12,7 +13,8 @@ import matplotlib.pyplot as plt
 
 
 # Construir la URL completa
-grobid_url = "http://localhost:8070/api/processFulltextDocument"
+# En caso de estar corriendolo en local sustituir grobid por localhost
+grobid_url = "http://grobid:8070/api/processFulltextDocument"
 
 # Definir la carpeta que contiene los archivos PDF
 folder_path = "../resources"
@@ -57,19 +59,12 @@ for filename in file_list:
             num_images_list.append(num_figures)
 
             #---------Links-----------
-            root = ET.fromstring(texto)
+            # Define la expresión regular para buscar URLs
+            patron_url = re.compile(r'(?:http[s]?://)?(www\.[^\s]+)')
 
-            # Buscar todos los elementos <ref> que contienen un atributo 'target'
-            refs = root.findall('.//ref[@target]')
-
-            # Extraer los valores de los atributos 'target' y guardarlos en una lista
-            links = []
-            for ref in refs:
-                target = ref.get('target')
-                links.append(target)
-
-            # Imprimir la lista de enlaces encontrados
-            print(links)
+            # Busca todas las URLs en el texto
+            urls_encontradas = re.findall(patron_url, texto_limpio)
+            print(f"En el archivo: {filename}, aparececen estos links: {urls_encontradas}")
         else:
             # Si hay algún error, se muestra el mensaje de error de Grobid
             print("Error al procesar el archivo: ", filename)
@@ -83,15 +78,18 @@ plt.figure(figsize = (8, 8), facecolor = None)
 plt.imshow(wordcloud)
 plt.axis("off")
 plt.tight_layout(pad = 0)
-                
-plt.savefig('../figures/wordcloud.png')
+
+if not os.path.exists("../resources/figures"):
+    os.makedirs("../resources/figures")               
+plt.savefig('../resources/figures/wordcloud.png')
 
 # Crear un gráfico de barras que muestre el número de imágenes
+fig2=plt.figure()
 plt.bar([os.path.splitext(filename)[0] for filename in os.listdir(folder_path) if filename.endswith('.pdf')], num_images_list)
 plt.xticks(rotation=90)
 plt.ylabel('Número de imágenes')
 plt.title('Número de imágenes en cada archivo')
 
-plt.savefig('../figures/numfigs.png')
+plt.savefig('../resources/figures/numfigs.png')
 
         

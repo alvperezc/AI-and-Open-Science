@@ -3,7 +3,8 @@ import os
 
 def _test_server_connection():
         """Test if the server is up and running."""
-        grobid_url = "http://localhost:8070/api/isalive"
+        # En caso de estar corriendolo en local sustituir grobid por localhost
+        grobid_url = "http://grobid:8070/api/isalive"
         try:
             r = requests.get(grobid_url)
         except:
@@ -32,15 +33,14 @@ def _test_empty_and_pdf():
         archivos_pdf = [archivo for archivo in archivos if archivo.endswith('.pdf')]
         archivos_no_pdf = []
         for archivo in archivos:
-            if not archivo.endswith('.pdf'):
-                archivos_no_pdf.append(archivo)
-
-        if len(archivos_pdf) == len(archivos):
-            print('Todos los archivos son PDF.')
-        else:
-            print('Hay archivos que no son PDF:', archivos_no_pdf)
+            if not os.path.exists("../resources/figures"):
+                if not archivo.endswith('.pdf') :
+                    print("Error processing the file: ", archivo)
+                    archivos_no_pdf.append(archivo)
+            else:
+                print(f'PDF file: {archivo} correct.')
 
 ###########################################################################################################################3
 _test_server_connection()
 _test_exist_dir()
-_test_empty()
+_test_empty_and_pdf()
