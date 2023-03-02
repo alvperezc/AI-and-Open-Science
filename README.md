@@ -1,7 +1,5 @@
 # AI-and-Open-Science
 
-[![DOI](https://zenodo.org/badge/599939336.svg)](https://zenodo.org/badge/latestdoi/599939336)
-
 ## Description
 
 This script is based on the Grobid text extraction tool.  It receives PDF files stored in the "resources" folder. It returns two images, stored in the figures folder, showing: a word cloud with the keywords of all the documents and a bar chart showing the number of images or figures that appear in each PDF document.
