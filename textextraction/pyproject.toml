@@ -12,6 +12,7 @@ beautifulsoup4 = "^4.11.2"
 textblob = "^0.17.1"
 wordcloud = "^1.8.2.2"
 lxml = "^4.9.2"
+unittest2 = "^1.1.0"
 
 
 [build-system]

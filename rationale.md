@@ -10,7 +10,7 @@ It is also able to process the number of images or figures that appear in the do
 
 For this implementation we have searched the XML for all the tags that refer to "figure" and have been keeping track of each one.
 
-## Functionalities    
+## Number of references   
 Finally it has an implementation where we managed to extract from the PDF all the links and references to other pages.
 
 The text is searched, using regular expressions, for all types of references that may exist in the text.
